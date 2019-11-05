@@ -48,7 +48,7 @@ class InfoBox extends Component {
 
           <div className="info__box__content">
             <p className="info__box__title">{title}</p>
-            <p>{description}</p>
+            <p dangerouslySetInnerHTML={{__html: description}}></p>
           </div>
         </div>
       </div>

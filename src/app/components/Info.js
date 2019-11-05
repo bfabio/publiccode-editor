@@ -45,7 +45,7 @@ class InfoBox extends Component {
     return (
       <div className="field_info">
         <small className="form-text text-muted">
-          <span>{partial}</span>
+          <span dangerouslySetInnerHTML={{__html: partial}}></span>
           {description.length > MAX_LEN && (
             <span>
               <a
