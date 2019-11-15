@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import { withTranslation } from 'react-i18next';
+
 import available_languages from "../contents/langs";
 //const available_languages = ["ita", "eng", "fra", "zho"];
 import CloseButton from "./CloseButton";
 
-export default class languageSwitcher extends Component {
+class languageSwitcher extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    const { t } = this.props;
+
     let { languages, currentLanguage, search } = this.props;
     //console.log(error);
     let results = available_languages;
@@ -45,7 +49,7 @@ export default class languageSwitcher extends Component {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <a> + Add Language </a>
+            <a> + {t('Add Language')} </a>
           </div>
           <div
             className="dropdown-menu language-filter"
@@ -56,7 +60,7 @@ export default class languageSwitcher extends Component {
                 type="text"
                 name="search"
                 className="form-control language-filter__input"
-                placeholder="Search"
+                placeholder={t('Search')}
                 onChange={e => this.props.onSearch(e.target.value)}
               />
             </div>
@@ -78,3 +82,5 @@ export default class languageSwitcher extends Component {
     );
   }
 }
+
+export default withTranslation()(languageSwitcher);

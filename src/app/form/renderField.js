@@ -1,6 +1,8 @@
 import React from "react";
 import deepmerge from "deepmerge";
 
+import i18n from '../locales';
+
 const guessWidget = (schema, theme) => {
   if (schema.widget) {
     return schema.widget;
@@ -42,11 +44,11 @@ const renderField = (
   const newFieldName = prefix ? prefix + fieldName : fieldName;
 
   let showLabel = schema.showLabel == false ? false : true;
-  let lbl = schema.label || schema.title || fieldName;
   let obj = React.createElement(theme[widget], {
     key: fieldName,
     fieldName: widget === "oneOf" ? fieldName : newFieldName,
-    label: lbl,
+    label: i18n.t(`fields.${fieldName}.label`),
+    description: i18n.t(`fields.${fieldName}.description`),
     required: required,
     schema: schema,
     maxLength: schema.maxLength,
