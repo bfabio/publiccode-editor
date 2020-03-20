@@ -3,6 +3,7 @@ const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const devMode = process.env.NODE_ENV !== 'production'
 const autoprefixer = require("autoprefixer");
 const webpack = require("webpack");
@@ -15,7 +16,7 @@ const paths = {
 module.exports = env => {
   let stage = "production";
 
-  return {
+  let conf = {
     mode: stage,
     entry: path.join(paths.JS, "app.js"),
     output: {
@@ -23,6 +24,7 @@ module.exports = env => {
       filename: "app.bundle.js"
     },
     plugins: [
+      new Dotenv(),
       new HtmlWebpackPlugin({
         template: path.join(paths.SRC, "index.html"),
         minify: {
@@ -82,4 +84,15 @@ module.exports = env => {
       }
     }
   };
+
+  const appConfig = './src/config/appConfig.js';
+  if (fs.existsSync(appConfig)) {
+    conf.plugins.push(
+      new CopyPlugin([
+        { from: appConfig, to: paths.DIST }
+      ])
+    );
+  }
+
+  return conf;
 };

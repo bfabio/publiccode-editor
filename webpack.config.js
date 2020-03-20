@@ -3,6 +3,7 @@ const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const devMode = process.env.NODE_ENV !== 'production'
 const autoprefixer = require("autoprefixer");
 const webpack = require("webpack");
@@ -15,7 +16,7 @@ const paths = {
 module.exports = env => {
   let stage = "development";
 
-  return {
+  let conf = {
     mode: stage,
     entry: path.join(paths.JS, "app.js"),
     output: {
@@ -26,6 +27,7 @@ module.exports = env => {
       './src/config/config.js': 'config'
     },
     plugins: [
+      new Dotenv(),
       new HtmlWebpackPlugin({
         template: path.join(paths.SRC, "index.html"),
         minify: {
@@ -41,9 +43,6 @@ module.exports = env => {
         filename: devMode ? '[name].css' : '[name].[hash].css',
         chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
       }),
-      new CopyPlugin([
-        { from: './src/config/appConfig.js', to: paths.DIST }
-      ])
     ],
     module: {
       rules: [
@@ -87,4 +86,15 @@ module.exports = env => {
       }
     }
   };
+
+  const appConfig = './src/config/appConfig.js';
+  if (fs.existsSync(appConfig)) {
+    conf.plugins.push(
+      new CopyPlugin([
+        { from: appConfig, to: paths.DIST }
+      ])
+    );
+  }
+
+  return conf;
 };
