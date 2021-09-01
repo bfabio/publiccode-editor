@@ -14,6 +14,6 @@ jobs:
           ref: master
 
       - run: yarn install
-      - run: yarn run release
+      - run: yarn run release -- --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
