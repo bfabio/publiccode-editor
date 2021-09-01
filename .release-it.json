@@ -23,8 +23,7 @@
     },
     "@release-it/conventional-changelog": {
       "preset": "conventionalcommits",
-      "infile": "CHANGELOG.md",
-      "ignoreRecommendedBump": true
+      "infile": "CHANGELOG.md"
     }
   }
 }
