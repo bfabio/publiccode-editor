@@ -1,9 +1,11 @@
 {
   "git": {
-    "commitMessage": "chore: release ${version}"
+    "commitMessage": "chore(release): release ${version}",
+    "tag": false
   },
   "github": {
-    "release": true
+    "release": true,
+    "update": false
   },
   "npm": {
     "publish": false,
@@ -21,7 +23,8 @@
     },
     "@release-it/conventional-changelog": {
       "preset": "conventionalcommits",
-      "infile": "CHANGELOG.md"
+      "infile": "CHANGELOG.md",
+      "ignoreRecommendedBump": true
     }
   }
 }
