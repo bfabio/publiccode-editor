@@ -1,3 +1,5 @@
+### [1.4.9](https://github.com/italia/publiccode-editor/compare/v1.4.8...v1.4.9) (2021-09-01)
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
