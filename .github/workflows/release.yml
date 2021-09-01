@@ -9,7 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          # Always release the tip of the default branch
+          ref: master
+
       - run: yarn install
       - run: yarn run release
         env:
