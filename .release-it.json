@@ -6,7 +6,8 @@
     "release": true
   },
   "npm": {
-    "publish": false
+    "publish": false,
+    "ignoreVersion": true
   },
   "plugins": {
     "@release-it/bumper": {
