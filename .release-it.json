@@ -6,7 +6,8 @@
     "release": true
   },
   "npm": {
-    "publish": false
+    "publish": false,
+    "ignoreVersion": true
   },
   "plugins": {
     "@release-it/bumper": {
@@ -17,6 +18,10 @@
           "path": "softwareVersion"
         }
       ]
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
     }
   }
 }
