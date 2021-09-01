@@ -5,7 +5,7 @@
   },
   "github": {
     "release": true,
-    "update": false
+    "update": true
   },
   "npm": {
     "publish": false,
